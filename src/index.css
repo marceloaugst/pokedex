@@ -1,0 +1,85 @@
+/* import font */
+@import url("https://fonts.googleapis.com/css2?family=Fira+Sans+Extra+Condensed:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+/* Reset Global*/
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #727272;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    #6a6a6a 0,
+    #6a6a6a 2px,
+    #727272 2px,
+    #727272 11px
+  );
+  background-size: 16px 16px;
+  font-size: 1rem;
+}
+
+main {
+  display: block;
+}
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+img {
+  max-width: 100%;
+  margin: auto;
+  display: block;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100svh;
+}
+
+/* Header */
+
+.header {
+  background-image: linear-gradient(to bottom, #3761a8, #fff);
+  text-align: center;
+}
+
+/* Main */
+
+.main {
+  margin: 1.25rem 150px 2rem;
+  padding: 20px;
+  border: 1px solid #a3a3a3;
+  border-radius: 4px;
+  flex: 1;
+  background: #fff;
+  gap: 40px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fira Sans Extra Condensed", serif;
+  font-style: normal;
+  text-align: center;
+  display: block;
+  font-size: 3em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
