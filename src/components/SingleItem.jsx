@@ -37,34 +37,41 @@ const singleItem = ({ id, name, sprites, types, stats, idPath }) => {
   const namePokemon = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
-    <div>
-      <Link to={`${idPath}/${id}`} className="single-item">
-        <div className="single-item__div-image-button">
-          <div className="single-item__div-image">
+    <tbody>
+      <tr>
+        <td className="single-item-cell_num single-item-cell__fixed">
+          <picture className="single-item-cell__img">
+            <source
+              srcSet={sprites.other["official-artwork"].front_default}
+              width="50"
+              height="46"
+              type="image/avif"
+            />
+
             <img
-              className="single-item__image"
               src={sprites.front_default}
               alt={`Imagem do Pokemon ${name} `}
             />
-          </div>
-
-          <div className="single-item__texts">
-            <div className="single-item__2lines">
-              <p className="single-item__title">{id}</p>
-              <p className="single-item__title">{namePokemon}</p>
-              <p className="single-item__title">{typesArray}</p>
-              <p className="single-item__title">{totalStats}</p>
-              <p className="single-item__title">{statsBase[0]}</p>
-              <p className="single-item__title">{statsBase[1]}</p>
-              <p className="single-item__title">{statsBase[2]}</p>
-              <p className="single-item__title">{statsBase[3]}</p>
-              <p className="single-item__title">{statsBase[4]}</p>
-              <p className="single-item__title">{statsBase[5]}</p>
-            </div>
-          </div>
-        </div>
-      </Link>
-    </div>
+          </picture>
+          <span className="single-item-cell__id">{id}</span>
+        </td>
+        <td className="single-item-cell__name">
+          <Link to={`${idPath}/${id}`} className="single-item__name">
+            {namePokemon}
+          </Link>
+        </td>
+        <td>
+          <div className="type-normal">{typesArray}</div>
+        </td>
+        <td className="single-item-cell__num">{totalStats}</td>
+        <td className="single-item-cell__num">{statsBase[0]}</td>
+        <td className="single-item-cell__num">{statsBase[1]}</td>
+        <td className="single-item-cell__num">{statsBase[2]}</td>
+        <td className="single-item-cell__num">{statsBase[3]}</td>
+        <td className="single-item-cell__num">{statsBase[4]}</td>
+        <td className="single-item-cell__num">{statsBase[5]}</td>
+      </tr>
+    </tbody>
   );
 };
 

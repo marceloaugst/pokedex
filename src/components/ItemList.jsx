@@ -1,5 +1,6 @@
 import React from "react";
 import SingleItem from "./SingleItem.jsx";
+import { Table } from "react-bootstrap";
 
 const ItemList = ({ itemArray, items, idPath }) => {
   return (
@@ -8,8 +9,8 @@ const ItemList = ({ itemArray, items, idPath }) => {
         <h1>Complete Pokémon Pokédex</h1>
       </div>
 
-      <div className="item-list__container">
-        <table className="single-item__table">
+      <div className="item-list__container sticky-header grid-row">
+        <Table bordered striped hoverclassName="single-item__table">
           <thead>
             <tr>
               <th className="single-item__th">
@@ -44,13 +45,13 @@ const ItemList = ({ itemArray, items, idPath }) => {
               </th>
             </tr>
           </thead>
-        </table>
 
-        {itemArray
-          .filter((currentValue, index) => index < items)
-          .map((currObj, index) => (
-            <SingleItem {...currObj} key={index} idPath={idPath} />
-          ))}
+          {itemArray
+            .filter((currentValue, index) => index < items)
+            .map((currObj, index) => (
+              <SingleItem {...currObj} key={index} idPath={idPath} />
+            ))}
+        </Table>
       </div>
     </div>
   );
