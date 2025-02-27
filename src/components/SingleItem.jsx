@@ -26,14 +26,21 @@ const singleItem = ({ id, name, sprites, types, stats, idPath }) => {
 
   // Pegar todos os types do pokemon e colocar em um Array
   // Porq as vezes o Pokemon tem mais de um Type
-  let typesArray = [];
-
-  types.forEach((currTypes) => {
+  const typesArray = types.map((currTypes) => {
     let typeName = currTypes.type.name;
     let formattedName = typeName.charAt(0).toUpperCase() + typeName.slice(1);
-    typesArray.push(formattedName + " ");
+    const typeCss = `type-${typeName} type-icon`;
+    return (
+      <div className={typeCss} key={typeName}>
+        {formattedName}
+      </div>
+    );
   });
 
+  // deixar o id com quatro zeros a esquerda
+  const idPoke = id.toString().padStart(4, "0");
+
+  // deixa a primeira letra do nome em maiusculo
   const namePokemon = name.charAt(0).toUpperCase() + name.slice(1);
 
   return (
@@ -53,16 +60,14 @@ const singleItem = ({ id, name, sprites, types, stats, idPath }) => {
               alt={`Imagem do Pokemon ${name} `}
             />
           </picture>
-          <span className="single-item-cell__id">{id}</span>
+          <span className="single-item-cell__id">{idPoke}</span>
         </td>
         <td className="single-item-cell__name">
           <Link to={`${idPath}/${id}`} className="single-item__name">
             {namePokemon}
           </Link>
         </td>
-        <td>
-          <div className="type-normal">{typesArray}</div>
-        </td>
+        <td>{typesArray}</td>
         <td className="single-item-cell__num">{totalStats}</td>
         <td className="single-item-cell__num">{statsBase[0]}</td>
         <td className="single-item-cell__num">{statsBase[1]}</td>

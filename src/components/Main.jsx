@@ -16,7 +16,7 @@ const Main = () => {
 
   return (
     <div className="main">
-      <ItemList itemArray={list} items="6" idPath="/pokemonData" />
+      <ItemList itemArray={list} items="100" idPath="/pokemonData" />
     </div>
   );
 };

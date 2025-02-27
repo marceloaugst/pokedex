@@ -10,7 +10,7 @@ const ItemList = ({ itemArray, items, idPath }) => {
       </div>
 
       <div className="item-list__container sticky-header grid-row">
-        <Table bordered striped hoverclassName="single-item__table">
+        <Table bordered striped hover className="single-item__table">
           <thead>
             <tr>
               <th className="single-item__th">

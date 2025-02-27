@@ -13,7 +13,7 @@ async function fetchPokemonDetails(url) {
 }
 
 // fornece uma lista de pokemon da API
-async function fetchPokemonList(limit = 6, offset = 0) {
+async function fetchPokemonList(limit = 100, offset = 0) {
   try {
     const response = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
