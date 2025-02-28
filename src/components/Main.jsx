@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import ItemList from "./ItemList";
-import fetchPokemonList from "../../api/api.js";
+import fetchPokemonList from "../../api/apiAllPokemon.js";
 
 const Main = () => {
   const [list, setList] = useState([]);

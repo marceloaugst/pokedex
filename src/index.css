@@ -31,7 +31,7 @@ main {
 }
 
 a {
-  color: inherit;
+  color: #2769be;
   text-decoration: none;
 }
 
@@ -61,17 +61,13 @@ img {
 /* Main */
 
 .main {
-  margin: 1.25rem 150px 2rem;
+  margin: 1.25rem 270px 2rem;
   padding: 20px;
   border: 1px solid #a3a3a3;
   border-radius: 4px;
   flex: 1;
   background: #fff;
   gap: 40px;
-}
-
-table {
-  align-items: center;
 }
 
 .grid-row {
@@ -91,7 +87,8 @@ table {
 }
 
 .single-item-cell__name {
-  font-size: 1rem;
+  margin-top: 10px;
+  font-size: 1.2rem;
   font-weight: bold;
 }
 
@@ -100,14 +97,15 @@ table {
 }
 
 .single-item-cell__num {
+  margin-top: 10px;
   text-align: center;
 }
 
 .type-icon {
   margin: 2px;
+  margin-bottom: 4px;
   display: inline-block;
   width: 66px;
-  margin-bottom: 4px;
   background: #dbdbdb;
   border: 1px solid #a3a3a3;
   border-radius: 4px;
@@ -120,6 +118,88 @@ table {
   text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
   text-transform: uppercase;
   transition: opacity 0.4s;
+}
+
+.poke-data {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.main h1 {
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  margin-top: 0;
+  line-height: 1;
+  font-weight: normal;
+  font-weight: bold;
+}
+
+.main nav {
+  text-align: center;
+  display: flex;
+  justify-content: space-between;
+  margin: 0 20px 0;
+}
+
+.poke-data__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  margin: 0 -1rem;
+}
+
+.data-img {
+  padding: 0 1rem;
+}
+
+.data-text h2 {
+  font-size: 2rem;
+}
+
+.data-text th {
+  color: #737373;
+  font-size: 0.875rem;
+  font-weight: normal;
+  text-align: right;
+}
+
+.data-text {
+  margin: 10px;
+}
+
+.data-text th,
+.data-text td {
+  border-width: 1px 0;
+  border-style: solid;
+  border-color: #f0f0f0;
+  background-color: #fff;
+}
+
+.text-2muted {
+  color: #737373;
+}
+
+th,
+td {
+  padding: 4px 10px;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: "Fira Sans Extra Condensed", serif;
+  font-style: normal;
+  text-align: center;
+  display: block;
+  font-size: 3em;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  font-weight: bold;
+  unicode-bidi: isolate;
 }
 
 .type-normal {
@@ -196,21 +276,4 @@ table {
 
 .type-curse {
   background-color: #698;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  font-family: "Fira Sans Extra Condensed", serif;
-  font-style: normal;
-  text-align: center;
-  display: block;
-  font-size: 3em;
-  margin-block-start: 0.67em;
-  margin-block-end: 0.67em;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  font-weight: bold;
-  unicode-bidi: isolate;
 }

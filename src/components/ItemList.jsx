@@ -14,7 +14,7 @@ const ItemList = ({ itemArray, items, idPath }) => {
           <thead>
             <tr>
               <th className="single-item__th">
-                <div className="single-item__th__div">Number</div>
+                <div className="single-item__th__div">#</div>
               </th>
               <th className="single-item__th">
                 <div className="single-item__th__div">Name</div>
