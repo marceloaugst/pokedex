@@ -1,100 +1,55 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-
+import React from "react";
 import { useParams } from "react-router-dom";
-import fetchPokemon from "../../api/apiOnePokemon.js";
-import fetchPokemonList from "../../api/apiAllPokemon.js";
 import { Table, Container, Navbar } from "react-bootstrap";
+import { fetchOnePokemon } from "../hooks/api/fetchOnePokemon.js";
+import { prevPokemon, nextPokemon } from "../hooks/api/pokemonNavigation.js";
+import PokedexDataBase from "../components/pokedexDataBase.jsx";
 
 const PokemonData = () => {
   const { id } = useParams();
 
-  const [pokemon, setPokemon] = useState(null);
-  const [prev, setPrev] = useState(null);
-  const [next, setNext] = useState(null);
+  // const { data } = fetchOnePokemon(id);
 
-  useEffect(() => {
-    async function getPokemon() {
-      const pokemons = await fetchPokemon(id);
-      setPokemon(pokemons);
-    }
+  const prev = prevPokemon(id);
+  const next = nextPokemon(id);
 
-    getPokemon();
-  }, []); // Adicionando `id` como dependência
+  const { data } = fetchOnePokemon(id);
+  const pokemon = data;
 
-  useEffect(() => {
-    async function getPokemonsPrev() {
-      const getPokemonsPrev = await fetchPokemonList();
+  let pokemonArray = [];
+  if (pokemon) {
+    pokemonArray.push(pokemon);
+  }
 
-      const foundPokemonPrev = getPokemonsPrev.find(
-        (currValue) => currValue.id === parseInt(id, 10) - 1
-      );
+  const statLabels = {
+    hp: "HP",
+    attack: "Attack",
+    defense: "Defense",
+    "special-attack": "Sp. Atk",
+    "special-defense": "Sp. Def",
+    speed: "Speed",
+  };
 
-      setPrev(foundPokemonPrev);
-    }
-    getPokemonsPrev();
-  }, []);
-
-  useEffect(() => {
-    async function getPokemonsNext() {
-      const getPokemonsNext = await fetchPokemonList();
-
-      const foundPokemonNext = getPokemonsNext.find(
-        (currValue) => currValue.id === parseInt(id, 10) + 1
-      );
-
-      setNext(foundPokemonNext);
-    }
-    getPokemonsNext();
-  }, []);
-
-  // Pegar os types do pokemon e retornar uma div dinamica
-  // Porq as vezes o Pokemon tem mais de um Type
-  const typesTd = pokemon?.types.map((currTypes, index) => {
-    let typeName = currTypes.type.name;
-    let formattedName = typeName.charAt(0).toUpperCase() + typeName.slice(1);
-    const typeCss = `type-icon type-${typeName} `;
-    return (
-      <div className={typeCss} key={index}>
-        {formattedName}
-      </div>
-    );
-  });
-
-  // Pegar os abilities do pokemon e retornar uma div dinamica
-  // Porq as vezes o Pokemon tem mais de um abilities
-  const abilitiesTd = pokemon?.abilities.map((currAbilities, index) => {
-    let abilitiesName = currAbilities.ability.name;
-    let formattedName =
-      abilitiesName.charAt(0).toUpperCase() + abilitiesName.slice(1);
-    let indexLoc = index + 1;
-    const hiddenAbility = currAbilities.is_hidden;
-    if (!hiddenAbility) {
-      return (
-        <>
-          <span className="text-2muted" key={index + formattedName}>
-            {indexLoc}. {formattedName}
-          </span>
-          <br />
-        </>
-      );
-    } else {
-      return (
-        <>
-          <small className="text-2muted" key={index + formattedName}>
-            {formattedName} (hidden ability)
-          </small>
-          <br />
-        </>
-      );
-    }
+  const baseStat = pokemon?.stats.map((currPokemon, index) => {
+    const label = statLabels[currPokemon.stat.name];
+    return label ? (
+      <tr key={index}>
+        <th>{label}</th>
+        <td>{currPokemon.base_stat}</td>
+        <td className="cell-barchart">
+          <div
+            style={{ width: "100" }}
+            className="barchart-bar barchart-rank-3 "
+          ></div>
+        </td>
+      </tr>
+    ) : null;
   });
 
   return (
     <div className="main">
-      <h1>
-        {pokemon?.id} - {pokemon?.name.toUpperCase()}
-      </h1>
+      <h1>{pokemon?.name.toUpperCase()}</h1>
+
       <Navbar bg="light" data-bs-theme="light">
         <Container>
           <Navbar.Text>
@@ -109,95 +64,31 @@ const PokemonData = () => {
           </Navbar.Text>
         </Container>
       </Navbar>
+
       <div className="poke-data">
         <div className="poke-data__container">
           <div className="data-img">
             <p>
               <img
                 src={pokemon?.sprites.other["official-artwork"].front_default}
-                width="360"
-                height="400"
+                width="355"
+                height="283"
                 alt={`Imagem do pokemon ${pokemon?.name}`}
               />
             </p>
           </div>
-          <div className="data-text">
-            <h2>Pokédex Data</h2>
-            <Table>
-              <tbody>
-                <tr>
-                  <th>National №</th>
-                  <td>
-                    <strong>{pokemon?.id}</strong>
-                  </td>
-                </tr>
-                <tr>
-                  <th>Type</th>
-                  <td>{typesTd}</td>
-                </tr>
-                <tr>
-                  <th>Height</th>
-                  <td>{pokemon?.height}</td>
-                </tr>
-                <tr>
-                  <th>Weight</th>
-                  <td>{pokemon?.weight} kg</td>
-                </tr>
-                <tr>
-                  <th>Abilities</th>
-                  <td>{abilitiesTd}</td>
-                </tr>
-              </tbody>
-            </Table>
-          </div>
-          <div className="data-text">
-            <div>
-              <h2>Training</h2>
-              <Table>
-                <tbody>
-                  <tr>
-                    <th>EV yield</th>
-                    <td>3 Sp. Atk</td>
-                  </tr>
-                  <tr>
-                    <th>Catch rate</th>
-                    <td>45 </td>
-                  </tr>
-                  <tr>
-                    <th>Base Friendship</th>
-                    <td>50</td>
-                  </tr>
-                  <tr>
-                    <th>Base Exp.</th>
-                    <td>267</td>
-                  </tr>
-                  <tr>
-                    <th>Growth Ratev</th>
-                    <td>Medium Slow</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-            <div>
-              <h2>Breeding</h2>
-              <Table>
-                <tbody>
-                  <tr>
-                    <th>Egg Groups</th>
-                    <td>Dragon, Monster</td>
-                  </tr>
-                  <tr>
-                    <th>Gender</th>
-                    <td>87.5% male, 12.5% female</td>
-                  </tr>
-                  <tr>
-                    <th>Egg cycles</th>
-                    <td>20 (4,884–5,140 steps)</td>
-                  </tr>
-                </tbody>
-              </Table>
-            </div>
-          </div>
+
+          {pokemonArray.map((currObj, index) => (
+            <PokedexDataBase {...currObj} key={index} />
+          ))}
+        </div>
+      </div>
+      <div className="grid-row">
+        <div>
+          <h2>Base Stats</h2>
+          <table>
+            <tbody>{baseStat}</tbody>
+          </table>
         </div>
       </div>
     </div>

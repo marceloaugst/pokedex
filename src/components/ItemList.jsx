@@ -3,6 +3,10 @@ import SingleItem from "./SingleItem.jsx";
 import { Table } from "react-bootstrap";
 
 const ItemList = ({ itemArray, items, idPath }) => {
+  // itemArray?.filter((currentValue, index) => index < items).map((currObj, index) => (
+  //     <SingleItem {...currObj} key={index} idPath={idPath} />
+  //   ));
+
   return (
     <div className="item-list">
       <div className="item-list__header">
@@ -47,8 +51,8 @@ const ItemList = ({ itemArray, items, idPath }) => {
           </thead>
 
           {itemArray
-            .filter((currentValue, index) => index < items)
-            .map((currObj, index) => (
+            ?.filter((currentValue, index) => index < items)
+            ?.map((currObj, index) => (
               <SingleItem {...currObj} key={index} idPath={idPath} />
             ))}
         </Table>
