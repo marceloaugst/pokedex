@@ -6,7 +6,7 @@ const Main = () => {
   const { detailedPokemon, error, loading } = useFetchAllPokemon();
 
   return (
-    <div className="main">
+    <div id="main" className="main-content grid-container">
       <ItemList itemArray={detailedPokemon} items="100" idPath="/pokemonData" />
     </div>
   );

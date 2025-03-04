@@ -1,5 +1,4 @@
 import React from "react";
-import { Table } from "react-bootstrap";
 import { usePokemonSpecies } from "../hooks/api/fetchPokemonSpecies.js";
 
 const convertHeightFeet = (height) => {
@@ -96,15 +95,18 @@ const PokedexDataBase = ({ id, types, height, weight, abilities }) => {
   const convertWL = weightG * 2.20462;
   const roundLbs = convertWL.toFixed(1);
 
+  // deixar o id com quatro zeros a esquerda
+  const idPoke = id.toString().padStart(4, "0");
+
   return (
-    <div className="data-text fixed-table-container">
+    <div className="grid-col span-md-6 span-lg-4">
       <h2>Pokédex Data</h2>
-      <Table hover className="fixed-table">
+      <table className="vitals-table">
         <tbody>
           <tr>
             <th>National №</th>
             <td>
-              <strong>{id}</strong>
+              <strong>{idPoke}</strong>
             </td>
           </tr>
           <tr>
@@ -132,7 +134,7 @@ const PokedexDataBase = ({ id, types, height, weight, abilities }) => {
             <td>{pokedexNumbers}</td>
           </tr>
         </tbody>
-      </Table>
+      </table>
     </div>
   );
 };

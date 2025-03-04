@@ -166,8 +166,8 @@ html {
   font-family: "Fira Sans", "Trebuchet MS", Ubuntu, Helvetica, Arial, sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  -webkit-text-size-adjust: none;
-  text-size-adjust: none;
+  /* -webkit-text-size-adjust: none;
+  text-size-adjust: none; */
 }
 
 body {
@@ -400,6 +400,10 @@ details > :last-child {
 :target {
   background-color: #f0f0f0;
 }
+
+/* @view-transition {
+  navigation: auto;
+} */
 
 @media (max-width: 619px) {
   h1 {
@@ -1308,7 +1312,7 @@ a[rel="lightbox"] {
 
 .cell-num {
   white-space: nowrap;
-  text-align: right;
+  /* text-align: right; */
 }
 
 .cell-total {

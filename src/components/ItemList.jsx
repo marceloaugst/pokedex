@@ -1,6 +1,5 @@
 import React from "react";
 import SingleItem from "./SingleItem.jsx";
-import { Table } from "react-bootstrap";
 
 const ItemList = ({ itemArray, items, idPath }) => {
   // itemArray?.filter((currentValue, index) => index < items).map((currObj, index) => (
@@ -8,54 +7,56 @@ const ItemList = ({ itemArray, items, idPath }) => {
   //   ));
 
   return (
-    <div className="item-list">
-      <div className="item-list__header">
-        <h1>Complete Pokémon Pokédex</h1>
-      </div>
+    <div className="main-content grid-container">
+      <h1>Complete Pokémon Pokédex</h1>
 
-      <div className="item-list__container sticky-header grid-row">
-        <Table bordered striped hover className="single-item__table">
-          <thead>
-            <tr>
-              <th className="single-item__th">
-                <div className="single-item__th__div">#</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Name</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Type</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Total</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Hp</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Attack</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Defense</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Sp.Atk</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Sp.Def</div>
-              </th>
-              <th className="single-item__th">
-                <div className="single-item__th__div">Speed</div>
-              </th>
-            </tr>
-          </thead>
+      <div className="grid-row">
+        <div className="grid-col span-md-12">
+          <div className="resp-scroll">
+            <table className="data-table sticky-header block-wide">
+              <thead>
+                <tr>
+                  <th className="sorting sorting-asc">
+                    <div className="sortwrap">#</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Name</div>
+                  </th>
+                  <th>
+                    <div className="sortwrap">Type</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Total</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Hp</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Attack</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Defense</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Sp.Atk</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Sp.Def</div>
+                  </th>
+                  <th className="sorting">
+                    <div className="sortwrap">Speed</div>
+                  </th>
+                </tr>
+              </thead>
 
-          {itemArray
-            ?.filter((currentValue, index) => index < items)
-            ?.map((currObj, index) => (
-              <SingleItem {...currObj} key={index} idPath={idPath} />
-            ))}
-        </Table>
+              {itemArray
+                ?.filter((currentValue, index) => index < items)
+                ?.map((currObj, index) => (
+                  <SingleItem {...currObj} key={index} idPath={idPath} />
+                ))}
+            </table>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -10,8 +10,8 @@ const singleItem = ({ id, name, sprites, types, stats, idPath }) => {
     const statsBase = currStats["base_stat"];
     statsTotalArray.push(statsBase);
     return (
-      <td key={index}>
-        <div className="single-item-cell__num">{statsBase}</div>
+      <td className="cell-num" key={index}>
+        <div>{statsBase}</div>
       </td>
     );
   });
@@ -24,10 +24,13 @@ const singleItem = ({ id, name, sprites, types, stats, idPath }) => {
   const typesDiv = types.map((currTypes, index) => {
     let typeName = currTypes.type.name;
     let formattedName = typeName.charAt(0).toUpperCase() + typeName.slice(1);
-    const typeCss = `type-${typeName} type-icon`;
+    const typeCss = ` type-icon type-${typeName} `;
     return (
-      <div className={typeCss} key={index}>
-        {formattedName}
+      <div key={index}>
+        <div className={typeCss} key={index}>
+          {formattedName}
+        </div>
+        <br />
       </div>
     );
   });
@@ -41,27 +44,30 @@ const singleItem = ({ id, name, sprites, types, stats, idPath }) => {
   return (
     <tbody>
       <tr>
-        <td className="single-item-cell_num single-item-cell__fixed">
-          <picture className="single-item-cell__img">
-            <source srcSet={sprites.front_default} width="60" height="52" />
+        <td className="cell-num cell-fixed">
+          <picture className="infocard-cell-img">
+            <source srcSet={sprites.front_default} width="60" height="56" />
 
             <img
+              className="img-fixed icon-pkmn"
               src={sprites.front_default}
               alt={`Imagem do Pokemon ${name} `}
+              width="60"
+              height="56"
             />
           </picture>
-          <span className="single-item-cell__id">{idPoke}</span>
+          <span className="cell-name">{idPoke}</span>
         </td>
-        <td>
-          <div className="single-item-cell__name">
-            <Link to={`${idPath}/${id}`} className="single-item__name">
+        <td className="cell-name">
+          <div>
+            <Link to={`${idPath}/${id}`} className="ent-name">
               {namePokemon}
             </Link>
           </div>
         </td>
-        <td>{typesDiv}</td>
-        <td>
-          <div className="single-item-cell__num">{statsTotal}</div>
+        <td className="cell-icon">{typesDiv}</td>
+        <td className="cell-num cell-total">
+          <div>{statsTotal}</div>
         </td>
         {statsDiv}
       </tr>
